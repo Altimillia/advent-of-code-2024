@@ -65,7 +65,6 @@ impl Report {
 mod tests {
     use super::{Report};
 
-
     #[test]
     fn reports_can_be_found_safe() {
         let input = r#"7 6 4 2 1"#;
