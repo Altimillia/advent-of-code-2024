@@ -56,6 +56,16 @@ fn print_specific_day(day: i32) {
         3 => print_style_result!(day_03, load_file("day03_input.txt"), "Day 3"),
         4 => print_style_result!(day_04, load_file("day04_input.txt"), "Day 4"),
         5 => print_style_result!(day_05, load_file("day05_input.txt"), "Day 5"),
+        6 => print_style_result!(day_06, load_file("day06_input.txt"), "Day 6"),
+        7 => print_style_result!(day_07, load_file("day07_input.txt"), "Day 7"),
+        8 => print_style_result!(day_08, load_file("day08_input.txt"), "Day 8"),
+        10 => print_style_result!(day_10, load_file("day10_input.txt"), "Day 10"),
+        11 => print_style_result!(day_11, load_file("day11_input.txt"), "Day 11"),
+        12 => print_style_result!(day_12, load_file("day12_input.txt"), "Day 12"),
+        13 => print_style_result!(day_13, load_file("day13_input.txt"), "Day 13"),
+        14 => print_style_result!(day_14, load_file("day14_input.txt"), "Day 14"),
+        15 => print_style_result!(day_15, load_file("day15_input.txt"), "Day 15"),
+        16 => print_style_result!(day_16, load_file("day16_input.txt"), "Day 16"),
         _ => {}
     }
 }

@@ -2,7 +2,7 @@
 use std::fmt;
 use std::ops::{Add, Mul, Sub};
 use itertools::max;
-use num::integer::Roots;
+use num::integer::{gcd, lcm, Roots};
 use crate::tools::usize_to_i32;
 
 pub const NORTH: Point = Point { x: 0, y: 1};
@@ -42,6 +42,11 @@ impl Point {
         return Point { x: self.x / mag, y: self.y / mag }
     }
 
+    pub fn normalize_to_line(&self) -> Point {
+        let least = gcd(self.x, self.y);
+        Point { x: self.x / least, y: self.y / least }
+    }
+
     pub fn magnitude(&self) -> i32 {
         (self.x * self.x + self.y * self.y).sqrt()
     }
@@ -52,6 +57,24 @@ impl Point {
 
     pub fn scale(&self, value: i32) -> Self {
         Point::new(self.x * value, self.y * value)
+    }
+
+    pub fn within_bounds(&self, upper: Point, lower: Point) -> bool {
+        if(self.x < lower.x || self.y < lower.y || self.x >= upper.x || self.y >= upper.y)
+        {
+            return false;
+        }
+
+        true
+    }
+
+    pub fn within_bounds_inclusive(&self, upper: Point, lower: Point) -> bool {
+        if(self.x < lower.x || self.y < lower.y || self.x > upper.x || self.y > upper.y)
+        {
+            return false;
+        }
+
+        true
     }
 }
 
@@ -77,3 +100,14 @@ impl fmt::Display for Point {
     }
 }
 
+#[cfg(test)]
+mod tests {
+    use crate::domain::point::Point;
+
+    #[test]
+    fn point_can_be_normalized() {
+        let p = Point::new(6, 2);
+        let n = p.normalize_to_line();
+        assert_eq!(n, Point::new(3, 1));
+    }
+}
